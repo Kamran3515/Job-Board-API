@@ -6,3 +6,8 @@ python-dotenv
 django-filter
 drf-spectacular
 gunicorn
+pytest
+pytest-django
+model-bakery
+factory-boy
+faker
