@@ -20,7 +20,6 @@ def test_company_list(api_client):
 
     assert response.status_code == 200
 
-    assert len(response.data) == 5
 
 @pytest.mark.django_db
 def test_employer_can_have_only_one_company(

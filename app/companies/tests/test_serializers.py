@@ -24,3 +24,27 @@ def test_company_serializer(employer):
     )
 
     assert serializer.is_valid()
+
+@pytest.mark.django_db
+def test_serializer_reject_second_company(
+    employer,
+    company,
+):
+
+    factory = APIRequestFactory()
+
+    request = factory.post("/")
+
+    request.user = employer
+
+    serializer = CompanySerializer(
+        data={
+            "name": "Second",
+            "description": "...",
+            "website": "https://example.com",
+            "location": "USA",
+        },
+        context={"request": request},
+    )
+
+    assert serializer.is_valid() is False

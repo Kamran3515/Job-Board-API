@@ -1,7 +1,10 @@
 from rest_framework.permissions import BasePermission
 
-
+    
 class IsEmployer(BasePermission):
+    """
+    Allow access only to employers.
+    """
 
     def has_permission(self, request, view):
         return (
@@ -11,6 +14,9 @@ class IsEmployer(BasePermission):
 
 
 class IsJobSeeker(BasePermission):
+    """
+    Allow access only to jobseekers.
+    """
 
     def has_permission(self, request, view):
         return (

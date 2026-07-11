@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1"
+    >
+
+    <title>Job Board</title>
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    {% load static %}
+
+    <link
+        rel="stylesheet"
+        href="{% static 'css/style.css' %}"
+    >
+
+</head>
+
+<body>
+
+{% include "components/navbar.html" %}
+
+<div class="container py-5">
+
+    {% block content %}
+
+    {% endblock %}
+
+</div>
+
+{% include "components/footer.html" %}
+
+<script type="module" src="{% static 'js/api.js' %}"></script>
+
+<script type="module" src="{% static 'js/main.js' %}"></script>
+
+
+</body>
+
+</html>
