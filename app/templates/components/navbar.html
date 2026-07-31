@@ -1,15 +1,165 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg bg-white shadow-sm sticky-top border-bottom invisible">
 
     <div class="container">
 
         <a
-            class="navbar-brand"
+            class="navbar-brand fw-bold fs-3 text-primary"
             href="/"
         >
 
-            Job Board
+            <i class="bi bi-briefcase-fill me-2"></i>
+            JobBoard
 
         </a>
+
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbar"
+        >
+
+            <span class="navbar-toggler-icon"></span>
+
+        </button>
+
+        <div
+            class="collapse navbar-collapse"
+            id="navbar"
+        >
+
+            <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+
+                <li class="nav-item">
+
+                    <a
+                        class="nav-link fw-semibold"
+                        href="/"
+                        id="home"
+                    >
+
+                        Home
+
+                    </a>
+
+                </li>
+
+                <li class="nav-item">
+
+                    <a
+                        class="nav-link fw-semibold"
+                        href="/jobs/"
+                    >
+
+                        Jobs
+
+                    </a>
+
+                </li>
+
+                <li
+                    class="nav-item"
+                    id="guest-links"
+                >
+
+                    <div class="d-flex gap-2">
+
+                        <a
+                            class="btn btn-outline-primary rounded-pill px-4 align-content-center"
+                            href="/login/"
+                        >
+
+                            Login
+
+                        </a>
+
+                        <a
+                            class="btn btn-primary rounded-pill px-4 align-content-center"
+                            href="/register/"
+                        >
+
+                            Register
+
+                        </a>
+
+                    </div>
+
+                </li>
+
+                <li
+                    class="nav-item dropdown d-none"
+                    id="user-menu">
+
+                    <a
+                        class="nav-link dropdown-toggle d-flex align-items-center gap-2"
+                        href="#"
+                        role="button"
+                        data-bs-toggle="dropdown">
+
+                        <div class="user-avatar">
+
+                            <i class="bi bi-person-fill"></i>
+
+                        </div>
+
+                        <span id="navbar-username"></span>
+
+                    </a>
+
+                    <ul class="dropdown-menu dropdown-menu-end">
+
+                        <li>
+
+                            <a
+                                id="dashboard-link"
+                                class="dropdown-item"
+                                href="#">
+
+                                <i class="bi bi-speedometer2 me-2"></i>
+
+                                Dashboard
+
+                            </a>
+
+                        </li>
+
+                        <li>
+
+                            <a
+                                href="/profile/"
+                                class="dropdown-item">
+
+                                <i class="bi bi-person me-2"></i>
+
+                                Profile
+
+                            </a>
+
+                        </li>
+
+                        <li><hr class="dropdown-divider"></li>
+
+                        <li>
+
+                            <button
+                                id="logout-btn"
+                                class="dropdown-item text-danger">
+
+                                <i class="bi bi-box-arrow-right me-2"></i>
+
+                                Logout
+
+                            </button>
+
+                        </li>
+
+                    </ul>
+
+                </li>
+
+            </ul>
+
+        </div>
 
     </div>
 

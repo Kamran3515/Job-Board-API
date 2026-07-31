@@ -6,10 +6,12 @@ from django.utils import timezone
 from rest_framework.test import APIRequestFactory
 from django.urls import reverse
 
-from tests.factories.applications import ApplicationFactory
-from tests.factories.accounts import JobSeekerFactory
-from tests.factories.jobs import JobFactory
+from rest_framework import status
 
+from tests.factories.companies import CompanyFactory
+from tests.factories.applications import ApplicationFactory
+from tests.factories.accounts import JobSeekerFactory,EmployerFactory
+from tests.factories.jobs import JobFactory
 
 
 @pytest.mark.django_db
@@ -30,6 +32,9 @@ def test_job_seeker_can_apply(
         },
         format="json",
     )
+
+    print(response.status_code)
+    print(response.data)
 
     assert response.status_code == 201
 
@@ -152,7 +157,7 @@ def test_only_my_applications(
 
     assert response.status_code == 200
 
-    assert response.data["count"] == 5
+    assert len(response.data) == 5
 
 
 @pytest.mark.django_db
@@ -195,3 +200,184 @@ def test_delete_application(
     )
 
     assert response.status_code == 204
+
+@pytest.mark.django_db
+def test_job_seeker_can_get_my_applications(
+    client_factory,
+):
+
+    seeker = JobSeekerFactory()
+
+    company = CompanyFactory()
+
+    job = JobFactory(
+        company=company,
+    )
+
+    application = ApplicationFactory(
+        applicant=seeker,
+        job=job,
+    )
+
+    other_user = JobSeekerFactory()
+
+    ApplicationFactory(
+        applicant=other_user,
+        job=job,
+    )
+
+    client = client_factory(seeker)
+
+    response = client.get(
+        "/applications/api/v1/my-applications/"
+    )
+
+    assert response.status_code == status.HTTP_200_OK
+
+    assert len(response.data) == 1
+
+    assert (
+        response.data[0]["id"]
+        == application.id
+    )
+
+    assert (
+        response.data[0]["applicant"]
+        == seeker.id
+    )
+
+@pytest.mark.django_db
+def test_employer_cannot_get_my_applications(
+    client_factory,
+):
+
+    employer = EmployerFactory()
+
+    client = client_factory(
+        employer,
+    )
+
+    response = client.get(
+        "/applications/api/v1/my-applications/"
+    )
+
+    assert response.status_code == (
+        status.HTTP_403_FORBIDDEN
+    )
+
+    assert (
+        response.data["detail"]
+        ==
+        "Only job seekers can access this endpoint."
+    )
+
+@pytest.mark.django_db
+def test_anonymous_user_cannot_get_my_applications(
+    api_client,
+):
+
+    response = api_client.get(
+        "/applications/api/v1/my-applications/"
+    )
+
+    assert response.status_code == (
+        status.HTTP_401_UNAUTHORIZED
+    )
+
+@pytest.mark.django_db
+def test_employer_can_get_job_applicants(
+    client_factory,
+):
+
+    employer = EmployerFactory()
+
+    company = CompanyFactory(
+        owner=employer,
+    )
+
+    job = JobFactory(
+        company=company,
+    )
+
+    ApplicationFactory.create_batch(
+        3,
+        job=job,
+    )
+
+    client = client_factory(
+        employer,
+    )
+
+    response = client.get(
+        f"/applications/api/v1/jobs/{job.id}/applicants/"
+    )
+
+    assert response.status_code == status.HTTP_200_OK
+
+    assert len(response.data) == 3
+
+@pytest.mark.django_db
+def test_other_employer_cannot_get_job_applicants(
+    client_factory,
+):
+
+    owner = EmployerFactory()
+
+    other = EmployerFactory()
+
+    company = CompanyFactory(
+        owner=owner,
+    )
+
+    job = JobFactory(
+        company=company,
+    )
+
+    ApplicationFactory(job=job)
+
+    client = client_factory(
+        other,
+    )
+
+    response = client.get(
+        f"/applications/api/v1/jobs/{job.id}/applicants/"
+    )
+
+    assert response.status_code == status.HTTP_403_FORBIDDEN
+
+    assert (
+        response.data["detail"]
+        == "You do not own this job."
+    )
+
+@pytest.mark.django_db
+def test_job_seeker_cannot_get_job_applicants(
+    client_factory,
+):
+
+    employer = EmployerFactory()
+
+    company = CompanyFactory(
+        owner=employer,
+    )
+
+    job = JobFactory(
+        company=company,
+    )
+
+    seeker = JobSeekerFactory()
+
+    client = client_factory(
+        seeker,
+    )
+
+    response = client.get(
+        f"/applications/api/v1/jobs/{job.id}/applicants/"
+    )
+
+    assert response.status_code == status.HTTP_403_FORBIDDEN
+
+    assert (
+        response.data["detail"]
+        == "Only employers can access this endpoint."
+    )

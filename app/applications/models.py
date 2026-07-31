@@ -1,4 +1,3 @@
-from django.conf import settings
 from django.db import models
 from jobs.models import Job
 from accounts.models import User
@@ -24,12 +23,19 @@ class Application(models.Model):
         related_name="applications",
     )
 
-    cover_letter = models.TextField()
+    cover_letter = models.TextField(
+        blank=True,
+    )
 
     resume = models.FileField(
-        upload_to="resumes/",
+        upload_to="applications/resumes/",
         blank=True,
-        null=True,
+        null=True
+    )
+
+    snapshot = models.JSONField(
+        default=dict,
+        blank=True,
     )
 
     status = models.CharField(

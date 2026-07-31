@@ -1,0 +1,175 @@
+.dashboard-title{
+
+    font-weight:700;
+
+    margin-bottom:2rem;
+
+}
+
+.dashboard-toolbar{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:2rem;
+
+}
+
+.dashboard-toolbar .btn{
+
+    border-radius:14px;
+
+    padding:.7rem 1.4rem;
+
+}
+
+.dashboard-stat-card{
+
+    border:none;
+
+    border-radius:18px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+    transition:.25s;
+
+}
+
+.dashboard-stat-card:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:0 15px 35px rgba(0,0,0,.12);
+
+}
+
+.dashboard-stat-card h2{
+
+    font-weight:700;
+
+}
+
+.dashboard-job-card{
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,.08);
+    transition: .25s;
+    
+}
+
+.dashboard-job-card:hover{
+    transform: translateY(-4px);
+    box-shadow: 0 16px 35px rgba(0,0,0,.12);
+}
+
+.dashboard-job-actions .btn{
+    flex: 1 1 0;
+    min-width: 0;
+    border-radius: 12px;
+    font-weight: 600;
+}
+
+.dashboard-job-actions > div{
+    display: flex;
+    gap: 10px;
+}
+
+.dashboard-applicants{
+    display:flex;
+    align-items:center;
+    padding-top:10px;
+    border-top:1px solid #ececec;
+}
+
+.dashboard-job-actions{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.dashboard-side-card{
+
+    border:none;
+
+    border-radius:20px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+.list-group-item{
+
+    border:none;
+
+}
+
+.list-group-item:hover{
+
+    background:#f8f9fa;
+
+}
+
+.applicant-count{
+
+    font-size:.9rem;
+
+    font-weight:600;
+
+}
+
+.application-card{
+
+    border:none;
+    border-radius:20px;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+    transition:.25s;
+
+}
+
+.application-card:hover{
+
+    transform:translateY(-4px);
+    box-shadow:0 16px 35px rgba(0,0,0,.12);
+
+}
+
+.application-card .btn{
+
+    border-radius:12px;
+    font-weight:600;
+    height:46px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+}
+
+.applicant-resume,
+.applicant-cover-letter{
+    white-space: pre-wrap;
+    line-height: 1.8;
+    font-size: .95rem;
+}
+
+.applicant-resume{
+    max-height: 220px;
+    overflow-y: auto;
+}
+
+.applicant-cover-letter{
+    max-height: 180px;
+    overflow-y: auto;
+}
+
+.applicant-card .btn-outline-primary{
+    border-radius:10px;
+    font-weight:600;
+    padding:.35rem .9rem;
+}
+
+.applicant-card .badge{
+    border-radius:20px;
+}

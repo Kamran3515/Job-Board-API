@@ -3,6 +3,8 @@ djangorestframework
 djangorestframework-simplejwt
 psycopg2-binary
 python-dotenv
+Pillow
+django-extensions
 django-filter
 drf-spectacular
 gunicorn

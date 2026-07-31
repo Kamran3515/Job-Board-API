@@ -1,0 +1,179 @@
+{% extends "pages/base.html" %}
+{% load static %} 
+{% block title %} 
+Jobs 
+{%endblock %} 
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/pages/jobs.css' %}" />
+{% endblock %}
+{% block content %}
+
+<h1 class="mb-4">Jobs</h1>
+
+<div class="card shadow-sm border-0 mb-4">
+
+    <div class="card-body">
+
+        <div class="row g-3">
+
+            <div class="col-md-6">
+
+                <label class="form-label fw-semibold text-secondary small text-uppercase">
+
+                    🔍 Search
+
+                </label>
+
+                <input
+                    id="search-input"
+                    class="form-control"
+                    placeholder="Search by title, company..."
+                >
+
+            </div>
+
+            <div class="col-md-6">
+
+                <label class="form-label fw-semibold text-secondary small text-uppercase">
+
+                    📍 Location
+
+                </label>
+
+                <input
+                    id="location-filter"
+                    class="form-control"
+                    placeholder="City or country..."
+                >
+
+            </div>
+
+            <div class="col-md-3">
+
+                <label class="form-label fw-semibold text-secondary small text-uppercase">
+
+                    Job Type
+
+                </label>
+
+                <select
+                    id="job-type-filter"
+                    class="form-select">
+
+                    <option value="">All Types</option>
+
+                    <option value="FULL_TIME">
+                        Full Time
+                    </option>
+
+                    <option value="PART_TIME">
+                        Part Time
+                    </option>
+
+                    <option value="REMOTE">
+                        Remote
+                    </option>
+
+                    <option value="INTERNSHIP">
+                        Internship
+                    </option>
+
+                </select>
+
+            </div>
+
+            <div class="col-md-3">
+
+                <label class="form-label fw-semibold text-secondary small text-uppercase">
+
+                    Experience
+
+                </label>
+
+                <select
+                    id="experience-filter"
+                    class="form-select">
+
+                    <option value="">
+                        Experience
+                    </option>
+
+                    <option value="JUNIOR">
+                        Junior
+                    </option>
+
+                    <option value="MID">
+                        Mid
+                    </option>
+
+                    <option value="SENIOR">
+                        Senior
+                    </option>
+
+                </select>
+
+            </div>
+
+            <div class="col-md-3">
+
+                <label class="form-label fw-semibold text-secondary small text-uppercase">
+
+                    Sort By
+
+                </label>
+
+                <select
+                    id="ordering-filter"
+                    class="form-select">
+
+                    <option value="-created_at">
+                        Newest
+                    </option>
+
+                    <option value="created_at">
+                        Oldest
+                    </option>
+
+                    <option value="-salary_min">
+                        Highest Salary
+                    </option>
+
+                    <option value="salary_min">
+                        Lowest Salary
+                    </option>
+
+                </select>
+
+            </div>
+
+            <div class="col-md-3">
+
+                <label class="form-label fw-semibold text-secondary small text-uppercase">
+
+                    Minimum Salary
+
+                </label>
+
+                <input
+                    id="salary-filter"
+                    type="number"
+                    class="form-control"
+                    placeholder="5000 ($)"
+                >
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div id="jobs-container" class="row"></div>
+
+<div id="pagination" class="mt-4 d-flex justify-content-center"></div>
+
+{% endblock %} 
+{% block extra_js %}
+<script type="module" src="{% static 'js/pages/jobs.js' %}"></script>
+{% endblock %}

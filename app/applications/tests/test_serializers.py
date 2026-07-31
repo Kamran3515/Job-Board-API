@@ -4,6 +4,7 @@ from rest_framework.test import APIRequestFactory
 
 from applications.api.v1.serializers import ApplicationSerializer
 from tests.factories.applications import ApplicationFactory
+from tests.factories.companies import CompanyFactory
 from tests.factories.accounts import JobSeekerFactory
 from tests.factories.jobs import JobFactory
 
@@ -57,3 +58,26 @@ def test_duplicate_application_not_allowed():
     )
 
     assert serializer.is_valid() is False
+
+
+@pytest.mark.django_db
+def test_application_serializer_contains_extra_fields():
+    company = CompanyFactory()
+    seeker = JobSeekerFactory()
+
+    job = JobFactory(
+        company=company,
+    )
+
+    application = ApplicationFactory(
+        job=job,
+        applicant=seeker,
+    )
+
+    serializer = ApplicationSerializer(application)
+
+    assert serializer.data["job_title"] == job.title
+
+    assert serializer.data["company_name"] == company.name
+
+    assert serializer.data["applicant_name"] == seeker.username
