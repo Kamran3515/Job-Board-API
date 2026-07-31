@@ -44,6 +44,8 @@ class JobFactory(factory.django.DjangoModelFactory):
 
     job_type = Job.JobType.FULL_TIME
 
+    work_mode = Job.WorkMode.ONSITE
+
     experience_level = Job.ExperienceLevel.MID
 
     expires_at = factory.LazyFunction(

@@ -20,16 +20,27 @@ class Skill(models.Model):
 
 class Job(models.Model):
 
+    class WorkMode(models.TextChoices):
+        ONSITE = "ONSITE", "On Site"
+        REMOTE = "REMOTE", "Remote"
+        HYBRID = "HYBRID", "Hybrid"
+
     class JobType(models.TextChoices):
+
         FULL_TIME = "FULL_TIME", "Full Time"
         PART_TIME = "PART_TIME", "Part Time"
-        REMOTE = "REMOTE", "Remote"
+        CONTRACT = "CONTRACT", "Contract"
         INTERNSHIP = "INTERNSHIP", "Internship"
+        FREELANCE = "FREELANCE", "Freelance"
+        TEMPORARY = "TEMPORARY", "Temporary"
 
     class ExperienceLevel(models.TextChoices):
+
+        INTERN = "INTERN", "Intern"
         JUNIOR = "JUNIOR", "Junior"
         MID = "MID", "Mid"
         SENIOR = "SENIOR", "Senior"
+        LEAD = "LEAD", "Lead"
 
     company = models.ForeignKey(
         Company,
@@ -64,6 +75,13 @@ class Job(models.Model):
     job_type = models.CharField(
         max_length=20,
         choices=JobType.choices,
+        db_index=True,
+    )
+
+    work_mode = models.CharField(
+        max_length=20,
+        choices=WorkMode.choices,
+        default=WorkMode.ONSITE,
         db_index=True,
     )
 

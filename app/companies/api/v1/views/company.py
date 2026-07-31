@@ -1,4 +1,6 @@
 from rest_framework import viewsets
+from rest_framework.decorators import action
+from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticatedOrReadOnly,IsAuthenticated
 
 from companies.models import Company
@@ -28,3 +30,24 @@ class CompanyViewSet(viewsets.ModelViewSet):
             ]
 
         return [permission() for permission in permission_classes]
+    
+    @action(
+        detail=False,
+        methods=["get"],
+        permission_classes=[
+            IsAuthenticated,
+            IsEmployer,
+        ],
+    )
+    def my(self, request):
+
+        queryset = Company.objects.filter(
+            owner=request.user
+        )
+
+        serializer = self.get_serializer(
+            queryset,
+            many=True,
+        )
+
+        return Response(serializer.data)

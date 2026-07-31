@@ -1,0 +1,42 @@
+{% extends "pages/base.html" %}
+{% load static %}
+
+{% block title %}
+Applicants
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-4">
+
+    <h2 class="mb-4">
+
+        Job Applicants
+
+    </h2>
+
+    <div
+        id="applicants-container"
+        class="row g-3">
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+
+<script>
+
+window.jobId =
+    "{{ view.kwargs.pk }}";
+
+</script>
+
+<script
+type="module"
+src="{% static 'js/pages/jobApplicants.js' %}">
+</script>
+
+{% endblock %}

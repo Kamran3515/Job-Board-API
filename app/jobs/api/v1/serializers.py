@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from django.utils import timezone
-from companies.models import Company
 from jobs.models import Job, Skill
+from applications.models import Application
 
 
 class SkillSerializer(serializers.ModelSerializer):
@@ -15,17 +15,24 @@ class SkillSerializer(serializers.ModelSerializer):
 
 class JobSerializer(serializers.ModelSerializer):
 
-    skills = serializers.PrimaryKeyRelatedField(
-        queryset=Skill.objects.all(),
+    skills = serializers.SlugRelatedField(
         many=True,
+        slug_field="name",
+        queryset=Skill.objects.all(),
         required=False,
     )
+    
+    company_name = serializers.CharField(source="company.name", read_only=True)
+    applications_count = serializers.IntegerField(read_only=True)
+    has_applied = serializers.SerializerMethodField()
 
     class Meta:
         model = Job
         fields = [
             "id",
             "company",
+            "company_name",
+            "applications_count",
             "title",
             "description",
             "requirements",
@@ -33,8 +40,10 @@ class JobSerializer(serializers.ModelSerializer):
             "salary_min",
             "salary_max",
             "job_type",
+            "work_mode",
             "experience_level",
             "skills",
+            "has_applied",
             "is_active",
             "expires_at",
             "created_at",
@@ -81,3 +90,14 @@ class JobSerializer(serializers.ModelSerializer):
             )
 
         return value
+    def get_has_applied(self, obj):
+
+        request = self.context.get("request")
+
+        if (not request or request.user.is_anonymous):
+            return False
+
+        return Application.objects.filter(
+            applicant=request.user,
+            job=obj,
+        ).exists()

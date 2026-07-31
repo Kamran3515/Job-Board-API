@@ -1,0 +1,86 @@
+{% extends "pages/base.html" %} 
+{% load static %} 
+{% block title %} 
+Employer Dashboard 
+{% endblock %} 
+{% block content %}
+
+<div class="container">
+  <h2 class="dashboard-title">Employer Dashboard</h2>
+
+  <div class="dashboard-toolbar">
+    <button id="create-job-btn" class="btn btn-primary">Create Job</button>
+  </div>
+  <p id="company-warning" class="text-danger mt-2 d-none">
+    You need to create a company before posting a job.
+  </p>
+  <div id="empty-company-state" class="card shadow-sm border-0 mb-4 d-none">
+    <div class="card-body text-center py-5">
+      <h3 class="mb-3">🏢 No Company Found</h3>
+
+      <p class="text-muted mb-4">
+        Create your company profile before posting your first job.
+      </p>
+
+      <button id="create-company-btn" class="btn btn-primary"> Create Company </button>
+    </div>
+  </div>
+  <div id="dashboard-stats"></div>
+  <div class="row mt-4">
+    <div class="col-lg-6 mb-4">
+        <div class="card shadow-sm border-0 h-100">
+            <div class="card-header bg-white fw-bold">
+                📌 Recent Jobs
+            </div>
+
+            <div
+                id="recent-jobs"
+                class="list-group list-group-flush">
+
+                <div class="list-group-item text-muted">
+
+                    No jobs yet.
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6 mb-4">
+        <div class="card shadow-sm border-0 h-100">
+            <div class="card-header bg-white fw-bold">
+                👤 Recent Applications
+            </div>
+            <div
+                id="recent-applications"
+                class="list-group list-group-flush">
+
+                <div class="list-group-item text-muted">
+
+                    No applications yet.
+
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  <div id="jobs-container" class="row">
+  </div>
+</div>
+
+{% include "components/jobModal.html" %}
+
+{% include "components/companyModal.html" %}
+
+{% include "components/deleteModal.html" %}
+
+{% endblock %} 
+
+{% block extra_js %}
+
+<script
+  type="module"
+  src="{% static 'js/pages/employerDashboard.js' %}"
+></script>
+
+{% endblock %}

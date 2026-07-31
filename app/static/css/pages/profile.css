@@ -1,0 +1,61 @@
+#avatar-upload-label{
+
+    width:50px;
+    height:50px;
+
+    border-radius:50%;
+
+    background:#0d6efd;
+    color:#fff;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border:3px solid #fff;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+#avatar-upload-label:hover{
+
+    background:#0b5ed7;
+
+    transform:scale(1.08);
+
+}
+
+.avatar-upload-btn{
+
+    width:50px;
+    height:50px;
+
+    border-radius:50%;
+
+    background:#0d6efd;
+    color:#fff;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border:3px solid #fff;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.15);
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.avatar-upload-btn:hover{
+
+    background:#0b5ed7;
+
+    transform:scale(1.08);
+
+}

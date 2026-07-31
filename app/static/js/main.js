@@ -1,47 +1,69 @@
-import { getJobs } from "./jobs.js";
+import { loadHomePage } from "./pages/home.js";
+import { initializeNavbar } from "./components/navbar.js";
+import { isAuthenticated, saveCurrentUser, getCurrentUser, clearTokens,} from "./authManager.js";
+import { me } from "./services/auth.js";
 
-async function loadJobs() {
+async function initializeAuth() {
 
-    const jobs =
-        await getJobs();
+    if (!isAuthenticated()) {
 
-    const container =
-        document.getElementById(
-            "jobs-container"
-        );
+        clearTokens();
+        return;
 
-    jobs.results.forEach(job => {
+    }
 
-        container.innerHTML += `
+    const cachedUser = getCurrentUser();
 
-<div class="col-md-6 mb-4">
+    if (cachedUser) {
 
-<div class="card shadow-sm">
+        return;
 
-<div class="card-body">
+    }
 
-<h4>
+    try {
 
-${job.title}
+        const user = await me();
 
-</h4>
+        if (!user) {
 
-<p>
+            clearTokens();
+            return;
 
-${job.location}
+        }
 
-</p>
+        saveCurrentUser(user);
 
-</div>
+    }
 
-</div>
+    catch (error) {
 
-</div>
+        console.error(error);
 
-`;
+        clearTokens();
 
-    });
+    }
 
 }
 
-loadJobs();
+
+document.addEventListener("DOMContentLoaded",
+
+    async () => {
+        const path = window.location.pathname;
+            
+        await initializeAuth();
+
+        initializeNavbar();
+
+        document.querySelector(".navbar")
+            .classList.remove("invisible");
+
+        if (path === "/") {
+
+            loadHomePage();
+
+        }
+
+    },
+
+);

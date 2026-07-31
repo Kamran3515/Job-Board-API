@@ -1,0 +1,27 @@
+{% extends "pages/base.html" %}
+{% load static %}
+
+{% block title %}
+Profile
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+<script>
+    window.CANDIDATE_ID = "{{ candidate_id|default:'' }}";
+</script>
+
+    <div id="profile-container"></div>
+
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+
+<script type="module"
+        src="{% static 'js/pages/profile.js' %}">
+</script>
+
+{% endblock %}

@@ -46,3 +46,16 @@ def auth_client(api_client, employer):
     )
 
     return api_client
+
+@pytest.fixture
+def client_factory(api_client):
+
+    def authenticate(user):
+
+        api_client.force_authenticate(
+            user=user,
+        )
+
+        return api_client
+
+    return authenticate
