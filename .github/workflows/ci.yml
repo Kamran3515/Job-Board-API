@@ -55,6 +55,8 @@ jobs:
       - name: Prepare environment
         run: |
           cp .env.example .env
+          mkdir -p app/logs
+          touch app/logs/django.log
 
       - name: Run migrations
         working-directory: app

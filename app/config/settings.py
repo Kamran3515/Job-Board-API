@@ -235,6 +235,13 @@ DEFAULT_FROM_EMAIL = os.getenv(
 )
 
 # logging
+LOG_DIR = BASE_DIR / "logs"
+
+LOG_DIR.mkdir(
+    parents=True,
+    exist_ok=True,
+)
+
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
@@ -250,7 +257,7 @@ LOGGING = {
         "file": {
             "level": "INFO",
             "class": "logging.FileHandler",
-            "filename": BASE_DIR / "logs" / "django.log",
+            "filename": LOG_DIR / "django.log",
             "formatter": "standard",
         },
         "console": {
