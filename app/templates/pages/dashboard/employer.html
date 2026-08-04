@@ -10,7 +10,9 @@ Employer Dashboard
 
   <div class="dashboard-toolbar">
     <button id="create-job-btn" class="btn btn-primary">Create Job</button>
+    <a id="company-view-btn" class="btn btn-primary d-none">Company View</a>
   </div>
+  
   <p id="company-warning" class="text-danger mt-2 d-none">
     You need to create a company before posting a job.
   </p>
@@ -18,7 +20,7 @@ Employer Dashboard
     <div class="card-body text-center py-5">
       <h3 class="mb-3">🏢 No Company Found</h3>
 
-      <p class="text-muted mb-4">
+      <p class="mb-4">
         Create your company profile before posting your first job.
       </p>
 
@@ -29,7 +31,7 @@ Employer Dashboard
   <div class="row mt-4">
     <div class="col-lg-6 mb-4">
         <div class="card shadow-sm border-0 h-100">
-            <div class="card-header bg-white fw-bold">
+            <div class="card-header fw-bold">
                 📌 Recent Jobs
             </div>
 
@@ -37,7 +39,7 @@ Employer Dashboard
                 id="recent-jobs"
                 class="list-group list-group-flush">
 
-                <div class="list-group-item text-muted">
+                <div class="list-group-item">
 
                     No jobs yet.
 
@@ -48,14 +50,14 @@ Employer Dashboard
 
     <div class="col-lg-6 mb-4">
         <div class="card shadow-sm border-0 h-100">
-            <div class="card-header bg-white fw-bold">
+            <div class="card-header fw-bold">
                 👤 Recent Applications
             </div>
             <div
                 id="recent-applications"
                 class="list-group list-group-flush">
 
-                <div class="list-group-item text-muted">
+                <div class="list-group-item">
 
                     No applications yet.
 
@@ -69,8 +71,6 @@ Employer Dashboard
 </div>
 
 {% include "components/jobModal.html" %}
-
-{% include "components/companyModal.html" %}
 
 {% include "components/deleteModal.html" %}
 

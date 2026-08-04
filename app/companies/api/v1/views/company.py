@@ -4,15 +4,21 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticatedOrReadOnly,IsAuthenticated
 
 from companies.models import Company
-from companies.api.v1.serializers import CompanySerializer
+from companies.api.v1.serializers import CompanySerializer,CompanyDetailSerializer
 from companies.api.v1.permissions import IsCompanyOwner
 
 from accounts.api.v1.permissions import IsEmployer
 
 
 class CompanyViewSet(viewsets.ModelViewSet):
-    queryset = Company.objects.all()
-    serializer_class = CompanySerializer
+    queryset = Company.objects.prefetch_related("jobs")
+
+    def get_serializer_class(self):
+
+        if self.action == "retrieve":
+            return CompanyDetailSerializer
+
+        return CompanySerializer
 
     def get_permissions(self):
 

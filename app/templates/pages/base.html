@@ -29,6 +29,8 @@
 
     {% load static %}
 
+    <link rel="icon" href="{% static 'images/favicon.svg' %}">
+
     <link
         rel="stylesheet"
         href="{% static 'css/style.css' %}"
@@ -56,7 +58,7 @@
 {% block extra_js %}
 {% endblock %}
 {% include "components/footer.html" %}
-
+{% include "components/companyModal.html" %}
 <script type="module" src="{% static 'js/api.js' %}"></script>
 
 <script

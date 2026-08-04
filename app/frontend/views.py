@@ -37,6 +37,9 @@ class JobsListPageView(TemplateView):
 class JobDetailPageView(TemplateView):
     template_name = "pages/jobs/detail.html"
 
+class CompanyDetailPageView(TemplateView):
+    template_name= "pages/company-detail.html"
+
 class EmployerDashboardView(TemplateView):
     template_name = "pages/dashboard/employer.html"
     

@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environments
+.venv/
+venv/
+
+# Git
+.git/
+.gitignore
+
+# IDE
+.vscode/
+.idea/
+
+# Tests
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Local env
+.env
+
+# Logs
+logs/
+*.log
+
+# Media
+app/media/
+
+# Collected static
+app/staticfiles/
+
+# OS
+.DS_Store
+Thumbs.db

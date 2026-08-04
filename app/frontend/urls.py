@@ -5,7 +5,7 @@ from .views import (
     JobsListPageView,EmployerDashboardView,
     SeekerDashboardView,JobApplicantsPageView,
     RegisterView,ProfileView,CandidateProfileView,
-    ForgotPasswordPageView,ResetPasswordPageView,
+    ForgotPasswordPageView,ResetPasswordPageView,CompanyDetailPageView
 )    
 
 urlpatterns = [
@@ -18,6 +18,7 @@ urlpatterns = [
     path("profile/<int:user_id>/", CandidateProfileView.as_view(), name="candidate-profile"),
     path("jobs/", JobsListPageView.as_view(), name="jobs-list-page"),
     path("jobs/<int:pk>/", JobDetailPageView.as_view(), name="job-detail-page"),
+    path("companies/<int:pk>/", CompanyDetailPageView.as_view(), name="company_detail"),
     path("dashboard/seeker/", SeekerDashboardView.as_view(), name="seeker-dashboard"),
     path("dashboard/employer/", EmployerDashboardView.as_view(), name="employer-dashboard"),
     path("dashboard/employer/jobs/<int:pk>/applicants/", JobApplicantsPageView.as_view(), name="dashboard-job-applicants"),

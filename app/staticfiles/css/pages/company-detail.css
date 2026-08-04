@@ -1,0 +1,39 @@
+.company-header{
+
+    border-radius:24px;
+
+}
+
+.company-header img{
+
+    transition:.3s;
+
+}
+
+.company-header img:hover{
+
+    transform:scale(1.05);
+
+}
+
+.company-description{
+
+    line-height:1.9;
+
+    color:var(--muted);
+
+}
+
+.location{
+    color: var(--muted);
+}
+
+.company-stat{
+
+    border-radius:18px;
+
+    background:#f8f9fa;
+
+    padding:1rem;
+
+}

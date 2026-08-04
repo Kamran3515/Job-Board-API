@@ -13,6 +13,7 @@ class Company(models.Model):
     description = models.TextField()
     website = models.URLField(blank=True)
     location = models.CharField(max_length=255)
+    logo = models.ImageField(upload_to="companies/logos/",blank=True,null=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
 

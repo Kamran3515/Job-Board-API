@@ -23,6 +23,8 @@ class JobSerializer(serializers.ModelSerializer):
     )
     
     company_name = serializers.CharField(source="company.name", read_only=True)
+    company_logo = serializers.SerializerMethodField()
+    company_location = serializers.CharField(source="company.location", read_only=True)
     applications_count = serializers.IntegerField(read_only=True)
     has_applied = serializers.SerializerMethodField()
 
@@ -32,6 +34,8 @@ class JobSerializer(serializers.ModelSerializer):
             "id",
             "company",
             "company_name",
+            "company_location",
+            "company_logo",
             "applications_count",
             "title",
             "description",
@@ -52,6 +56,13 @@ class JobSerializer(serializers.ModelSerializer):
         read_only_fields = [
             "created_at",
         ]
+
+    def get_company_logo(self, obj):
+
+        if obj.company.logo:
+            return obj.company.logo.url
+
+        return None
 
     def validate(self, attrs):
 
