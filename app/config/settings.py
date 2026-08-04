@@ -17,7 +17,6 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-load_dotenv(BASE_DIR.parent / ".env")
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
@@ -28,6 +27,9 @@ if not SECRET_KEY:
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DEBUG", "False") == "True"
+
+if DEBUG:
+    load_dotenv(BASE_DIR / ".env")
 
 ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS","127.0.0.1,localhost").split(",")
 
@@ -66,7 +68,7 @@ if not DEBUG:
 
     CSRF_COOKIE_SECURE = os.getenv("CSRF_COOKIE_SECURE", "False") == "True"
 
-    SECURE_HSTS_SECONDS = 31536000
+    SECURE_HSTS_SECONDS = 0
 
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 
