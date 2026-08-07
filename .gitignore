@@ -186,3 +186,23 @@ cython_debug/
 htmlcov/
 certbot/
 app/media/
+# SSL Certificates
+certbot/
+
+# User uploaded files
+app/media/
+
+# Logs
+logs/
+
+# Collected static files (generated)
+app/staticfiles/
+
+# VS Code
+.vscode/
+
+# JetBrains
+.idea/
+
+# macOS
+.DS_Store
