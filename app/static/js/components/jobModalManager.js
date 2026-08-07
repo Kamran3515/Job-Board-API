@@ -2,7 +2,7 @@ import {createJob,updateJob} from "../services/jobs.js";
 import { toast } from "../utils/toast.js";
 import { showToast } from "./showToast.js";
 
-import { getSelectedSkills, loadSkills } from "./skill.js"
+import { getSelectedSkills, loadSkills } from "./skill.js";
 import { api } from "../api.js";
 
 
