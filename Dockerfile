@@ -5,7 +5,10 @@ ENV PYTHONUNBUFFERED=1
 
 WORKDIR /app
 
-# برای psycopg2 و بعضی پکیج‌ها
+# تغییر Mirror به آلمان
+RUN sed -i 's|deb.debian.org|ftp.de.debian.org|g' /etc/apt/sources.list.d/debian.sources
+
+# نصب وابستگی‌ها
 RUN apt-get update && apt-get install -y \
     gcc \
     libpq-dev \
@@ -20,4 +23,4 @@ COPY ./app .
 
 EXPOSE 8000
 
-CMD ["gunicorn","config.wsgi:application","--bind","0.0.0.0:8000","--workers","3"]
+CMD ["gunicorn", "config.wsgi:application", "--bind", "0.0.0.0:8000", "--workers", "3"]
