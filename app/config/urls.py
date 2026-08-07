@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path,include
 from django.conf import settings
 from django.conf.urls.static import static
+from common.health import health_check
 
 urlpatterns = [
     path("",include("frontend.urls")),
@@ -26,6 +27,7 @@ urlpatterns = [
     path("companies/", include("companies.urls")),
     path("jobs/", include("jobs.urls")),
     path("applications/", include("applications.urls")),
+    path("health/", health_check),
 ]
 
 if settings.DEBUG:

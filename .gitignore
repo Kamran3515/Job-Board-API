@@ -184,3 +184,5 @@ cython_debug/
 .pytest_cache/
 .coverage
 htmlcov/
+certbot/
+app/media/
