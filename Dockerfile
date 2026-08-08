@@ -5,6 +5,9 @@ ENV PYTHONUNBUFFERED=1
 
 WORKDIR /app
 
+# تغییر Mirror به آلمان
+RUN sed -i 's|https://deb.debian.org|https://deb.debian.org|g' /etc/apt/sources.list.d/debian.sources
+
 # نصب وابستگی‌ها
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
