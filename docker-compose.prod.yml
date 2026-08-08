@@ -2,7 +2,7 @@ services:
 
   web:
 
-    build: .
+    image: ghcr.io/kamran3515/job-board-api:latest
 
     command: >
       sh -c "
