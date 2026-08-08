@@ -18,20 +18,19 @@ permissions:
 jobs:
 
   test:
-
     runs-on: ubuntu-latest
 
+    env:
+      SECRET_KEY: ${{ secrets.SECRET_KEY }}
+
     services:
-
       postgres:
-
         image: postgres:17
 
         env:
           POSTGRES_DB: test_db
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
-          SECRET_KEY: ${{ secrets.SECRET_KEY }}
 
         ports:
           - 5432:5432
@@ -59,7 +58,6 @@ jobs:
 
       - name: Prepare environment
         run: |
-          cp .env.example .env
           mkdir -p app/logs
           touch app/logs/django.log
 
@@ -73,10 +71,12 @@ jobs:
         run: |
           pytest
 
-  docker:
 
+  docker:
     name: Build and Push Docker Image
+
     runs-on: ubuntu-latest
+
     needs: test
 
     steps:
