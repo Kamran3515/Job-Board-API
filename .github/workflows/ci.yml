@@ -20,21 +20,15 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
-    env:
-      SECRET_KEY: ${{ secrets.SECRET_KEY }}
-
     services:
       postgres:
         image: postgres:17
-
         env:
           POSTGRES_DB: test_db
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
-
         ports:
           - 5432:5432
-
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
@@ -42,7 +36,6 @@ jobs:
           --health-retries 5
 
     steps:
-
       - name: Checkout repository
         uses: actions/checkout@v4
 
@@ -58,6 +51,13 @@ jobs:
 
       - name: Prepare environment
         run: |
+          cp .env.example .env
+          echo "SECRET_KEY=${{ secrets.SECRET_KEY }}" >> .env
+          echo "POSTGRES_DB=test_db" >> .env
+          echo "POSTGRES_USER=postgres" >> .env
+          echo "POSTGRES_PASSWORD=postgres" >> .env
+          echo "POSTGRES_HOST=localhost" >> .env
+          echo "POSTGRES_PORT=5432" >> .env
           mkdir -p app/logs
           touch app/logs/django.log
 
@@ -70,7 +70,6 @@ jobs:
         working-directory: app
         run: |
           pytest
-
 
   docker:
     name: Build and Push Docker Image
