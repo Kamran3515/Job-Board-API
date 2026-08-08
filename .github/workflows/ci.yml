@@ -57,8 +57,8 @@ jobs:
           echo "POSTGRES_DB=test_db" >> app/.env
           echo "POSTGRES_USER=postgres" >> app/.env
           echo "POSTGRES_PASSWORD=postgres" >> app/.env
-          echo "POSTGRES_HOST=localhost" >> app/.env
-          echo "POSTGRES_PORT=5432" >> app/.env
+          echo "DB_HOST=localhost" >> app/.env
+          echo "DB_PORT=5432" >> app/.env
           mkdir -p app/logs
           touch app/logs/django.log
 
