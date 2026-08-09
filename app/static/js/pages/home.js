@@ -109,7 +109,7 @@ export async function loadHomePage() {
     }
 
     const searchBtn = document.getElementById("search-btn");
-    const searchInp = document.getElementById("search-input")
+    const searchInp = document.getElementById("search-input");
     if (!searchBtn) return;
 
     searchBtn.addEventListener(
