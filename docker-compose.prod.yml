@@ -16,6 +16,7 @@ services:
     volumes:
       - ./app/media:/app/media
       - ./logs:/app/logs
+      - /var/www/Job-Board-API/app/staticfiles:/app/staticfiles
 
     restart: always
 
