@@ -86,6 +86,8 @@ async function renderJobs(data) {
         container.innerHTML += jobCard(job);
 
     });
+
+    animateCards();
 }
 
 export async function loadHomePage() {
